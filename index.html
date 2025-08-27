@@ -1,153 +1,177 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Evaluasi KKN • Realtime Chat (Firebase)</title>
-  <meta name="description" content="Website evaluasi kelompok KKN dengan chat realtime berbasis Firebase. Full static (HTML+JS), siap deploy ke GitHub Pages/Netlify/Vercel." />
-
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script> 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { display: ['Inter', 'ui-sans-serif', 'system-ui'] },
-          boxShadow: {
-            soft: '0 10px 30px rgba(2, 6, 23, 0.08)'
-          }
-        }
-      },
-      darkMode: 'class'
-    }
-  </script>
-  <!-- Icons -->
-  <link href="https://unpkg.com/lucide-static@0.453.0/font/lucide.css" rel="stylesheet" />
-  <!-- AOS (Animate On Scroll) -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <title>Tabligh Akbar & Multi Agenda Muhammadiyah Siak — Pimpinan Daerah Muhammadiyah Siak</title>
+  <meta name="description" content="Program infaq dan sodaqoh ini berjalan berkelanjutan." />
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Glass effect */
-    .glass { backdrop-filter: blur(10px); background: linear-gradient(120deg, rgba(255,255,255,.7), rgba(255,255,255,.55)); }
-    .dark .glass { background: linear-gradient(120deg, rgba(2,6,23,.65), rgba(2,6,23,.55)); }
-    /* Scrollbar */
-    .nice-scroll::-webkit-scrollbar { width: 8px; }
-    .nice-scroll::-webkit-scrollbar-thumb { border-radius: 999px; background: rgba(100,116,139,.45); }
+    :root { --accent: #22c55e; }
+    .accent { color: var(--accent); }
+    .bg-accent { background: var(--accent); }
+    .ring-accent { --tw-ring-color: var(--accent); }
+    .gradient {
+      background: radial-gradient(80% 80% at 50% 20%, rgba(16,185,129,.20), transparent),
+                  conic-gradient(from 180deg at 50% 50%, rgba(16,185,129,.15), transparent);
+    }
   </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-950 text-slate-800 dark:text-slate-100">
-  <!-- Navbar -->
-  <header class="sticky top-0 z-30">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="glass shadow-soft rounded-2xl mt-4">
-        <div class="flex items-center justify-between px-4 py-3">
-          <div class="flex items-center gap-3">
-            <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 grid place-content-center text-white"><i class="lucide-message-circle"></i></div>
-            <div>
-              <h1 class="font-bold text-lg">Evaluasi KKN</h1>
-              <p class="text-xs text-slate-500 dark:text-slate-400">Chat Realtime • Firebase • Static Deploy</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-2">
-            <button id="themeToggle" class="px-3 py-2 text-sm rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 transition active:scale-95">Tema</button>
-            <a href="#panduan" class="px-3 py-2 text-sm rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 transition active:scale-95">Panduan</a>
-          </div>
-        </div>
+<body class="min-h-screen bg-gray-950 text-gray-100">
+  <div class="absolute inset-0 -z-10 gradient"></div>
+
+  <header class="max-w-5xl mx-auto px-4 py-8">
+    <div class="flex items-center gap-4">
+      <div class="w-16 h-26 rounded-full bg-accent/20 ring-1 ring-accent grid place-items-center overflow-hidden">
+        <img src="ssh1.png" alt="" class="w-full h-full object-cover">
+      </div>
+      <div>
+        <h1 class="text-2xl md:text-3xl font-semibold tracking-tight">Tabligh Akbar & Multi Agenda Muhammadiyah Siak</h1>
+        <p class="text-gray-400"><span class="font-medium text-white">Pimpinan Daerah Muhammadiyah Siak</span></p>
       </div>
     </div>
   </header>
 
-  <!-- Hero / Tabs -->
-  <section class="max-w-6xl mx-auto px-4 mt-8" data-aos="fade-up">
-    <div class="grid lg:grid-cols-3 gap-6 items-stretch">
-      <div class="lg:col-span-1 glass shadow-soft rounded-3xl p-6">
-        <h2 class="text-xl font-semibold mb-2">Identitas Pengirim</h2>
-        <p class="text-sm text-slate-500 mb-4">Nama akan tampil di setiap pesan yang kamu kirim.</p>
-        <div class="space-y-3">
-          <input id="displayName" type="text" placeholder="Nama lengkap / inisial" class="w-full px-4 py-3 rounded-2xl bg-white/60 dark:bg-slate-900/60 border border-slate-200/50 dark:border-slate-700/50 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-          <input id="groupName" type="text" placeholder="Kelompok / Divisi (opsional)" class="w-full px-4 py-3 rounded-2xl bg-white/60 dark:bg-slate-900/60 border border-slate-200/50 dark:border-slate-700/50 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-          <button id="saveIdentity" class="w-full px-4 py-3 rounded-2xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-medium hover:opacity-90 active:scale-[.98] transition">Simpan Identitas</button>
-          <p id="identityNote" class="text-xs text-emerald-600 hidden">Identitas disimpan ✔</p>
+  <main class="max-w-5xl mx-auto px-4 pb-16">
+    <section class="grid md:grid-cols-3 gap-6">
+      <!-- Kiri: Info Program + Progress -->
+      <div class="md:col-span-2 p-6 rounded-2xl bg-gray-900/60 ring-1 ring-white/10">
+        <h2 class="text-xl font-semibold mb-2">Program infaq dan sodaqoh</h2>
+        <p class="text-gray-300 mb-6">Programan Infaq dan sodaqoh ini berjalan berkelanjutan.</p>
+
+        <!-- Progress -->
+        <div class="p-4 rounded-xl bg-black/30 ring-1 ring-white/10 mb-6">
+          <div class="flex items-end justify-between gap-4 mb-3">
+            <div>
+              <p class="text-sm text-gray-400">Terkumpul</p>
+              <p class="text-2xl font-semibold">
+                <span id="totalAmount">Rp 0</span>
+                <span class="text-sm text-gray-400 font-normal">/ Rp 50.000.000</span>
+              </p>
+            </div>
+            <div class="text-right">
+              <p class="text-sm text-gray-400">Progres</p>
+              <p class="text-2xl font-semibold"><span id="progressPercent">0</span>%</p>
+            </div>
+          </div>
+          <div class="h-3 w-full rounded-full bg-white/10 overflow-hidden">
+            <div id="progressBar" class="h-full bg-accent" style="width:0%"></div>
+          </div>
         </div>
 
-        <div class="mt-8 border-t border-slate-200/50 dark:border-slate-700/50 pt-6">
-          <h3 class="text-lg font-semibold mb-2">Mode Admin</h3>
-          <p class="text-sm text-slate-500 mb-3">Masuk untuk melihat semua chat & hapus pesan jika diperlukan.</p>
-          <div class="flex gap-2">
-            <input id="adminCode" type="password" placeholder="Kode admin" class="flex-1 px-4 py-3 rounded-2xl bg-white/60 dark:bg-slate-900/60 border border-slate-200/50 dark:border-slate-700/50 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-            <button id="adminLogin" class="px-4 py-3 rounded-2xl bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95">Masuk</button>
-          </div>
-          <p class="text-xs text-slate-500 mt-2">(Untuk produksi sebaiknya pakai <em>Firebase Auth</em>.)</p>
+        <!-- Aksi -->
+        <div class="grid sm:grid-cols-2 gap-4">
+          <button id="openDonate" class="px-4 py-3 rounded-xl bg-accent text-black font-semibold ring-1 ring-white/10 hover:opacity-90 transition">
+            💚 Donasi Sekarang
+          </button>
+          <button id="exportCsv" class="px-4 py-3 rounded-xl bg-white/10 text-white font-semibold ring-1 ring-white/10 hover:bg-white/20 transition">
+            ⬇️ Export CSV Donatur
+          </button>
         </div>
       </div>
 
-      <div class="lg:col-span-2 space-y-6">
-        <!-- Chat Card -->
-        <div class="glass shadow-soft rounded-3xl overflow-hidden">
-          <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200/50 dark:border-slate-700/50 bg-white/30 dark:bg-slate-900/30">
-            <div class="flex items-center gap-3">
-              <i class="lucide-send"></i>
-              <h2 class="font-semibold">Ruang Chat Evaluasi</h2>
+      <!-- Kanan: Metode Pembayaran -->
+      <aside class="p-6 rounded-2xl bg-gray-900/60 ring-1 ring-white/10">
+        <h3 class="text-lg font-semibold mb-3">Metode Pembayaran</h3>
+
+        <div class="space-y-4">
+          <!-- DANA -->
+          <div class="p-4 rounded-xl bg-black/30 ring-1 ring-white/10">
+            <p class="text-sm text-gray-400">DANA (Putra Baruta)</p>
+            <p class="text-xl font-semibold tracking-wide select-all text-white" id="danaNumber">082376599674</p>
+            <div class="mt-3 flex items-center gap-2">
+              <button class="px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm transition" onclick="copyToClipboard('danaNumber')">Copy</button>
+              <a class="px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm transition"
+                 target="_blank" rel="noreferrer"
+                 href="https://api.qrserver.com/v1/create-qr-code/?size=512x512&data=082376599674">Lihat QR</a>
             </div>
-            <span class="text-xs text-slate-500" id="msgCount">0 pesan</span>
           </div>
-          <div id="messages" class="h-[52vh] overflow-y-auto nice-scroll p-6 space-y-4 bg-gradient-to-b from-transparent to-white/40 dark:to-slate-900/40"></div>
-          <div class="p-4 border-t border-slate-200/50 dark:border-slate-700/50 bg-white/30 dark:bg-slate-900/30">
-            <form id="chatForm" class="flex gap-3">
-              <input id="messageInput" type="text" required placeholder="Tulis masukan/evaluasi di sini..." class="flex-1 px-4 py-3 rounded-2xl bg-white/60 dark:bg-slate-900/60 border border-slate-200/50 dark:border-slate-700/50 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-              <button class="px-5 py-3 rounded-2xl bg-indigo-600 text-white font-medium hover:bg-indigo-700 active:scale-95"><i class="lucide-arrow-right"></i></button>
-            </form>
+
+          <!-- BRK -->
+          <div class="p-4 rounded-xl bg-black/30 ring-1 ring-white/10">
+            <p class="text-sm text-gray-400">BRK (LAZIZMU SIAK)</p>
+            <p class="text-xl font-semibold tracking-wide select-all text-white" id="brkNumber">820-31-58786</p>
+            <div class="mt-3 flex items-center gap-2">
+              <button class="px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm transition" onclick="copyToClipboard('brkNumber')">Copy</button>
+              <a class="px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm transition"
+                 target="_blank" rel="noreferrer"
+                 href="https://api.qrserver.com/v1/create-qr-code/?size=512x512&data=820-31-58786">Lihat QR</a>
+            </div>
+          </div>
+
+          <!-- Mandiri Syariah -->
+          <div class="p-4 rounded-xl bg-black/30 ring-1 ring-white/10">
+            <p class="text-sm text-gray-400">MANDIRI SYARIAH (LAZIZMU SIAK)</p>
+            <p class="text-xl font-semibold tracking-wide select-all text-white" id="mandiriNumber">7440070706</p>
+            <div class="mt-3 flex items-center gap-2">
+              <button class="px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm transition" onclick="copyToClipboard('mandiriNumber')">Copy</button>
+              <a class="px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm transition"
+                 target="_blank" rel="noreferrer"
+                 href="https://api.qrserver.com/v1/create-qr-code/?size=512x512&data=7440070706">Lihat QR</a>
+            </div>
+          </div>
+
+          <!-- Catatan -->
+          <div class="p-4 rounded-xl bg-black/30 ring-1 ring-white/10">
+            <p class="text-sm text-gray-400">Catatan</p>
+            <p class="text-sm text-gray-300">
+              Setelah transfer, silakan isi form donasi agar nama & nominal tercatat di daftar donatur.
+              Verifikasi otomatis tidak tersedia.
+            </p>
           </div>
         </div>
+      </aside>
+    </section>
 
-        <!-- Admin Panel -->
-        <div id="adminPanel" class="glass shadow-soft rounded-3xl p-6 hidden" data-aos="fade-up">
-          <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center gap-3">
-              <i class="lucide-shield"></i>
-              <h2 class="font-semibold">Panel Admin</h2>
-            </div>
-            <div class="flex gap-2">
-              <button id="exportCSV" class="px-4 py-2 rounded-xl bg-emerald-600 text-white text-sm hover:bg-emerald-700 active:scale-95">Export CSV</button>
-              <button id="adminLogout" class="px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-sm hover:opacity-90 active:scale-95">Keluar</button>
-            </div>
-          </div>
-          <div id="adminList" class="nice-scroll max-h-[45vh] overflow-y-auto divide-y divide-slate-200/60 dark:divide-slate-700/60"></div>
+    <!-- Donatur Terbaru -->
+    <section class="mt-8 p-6 rounded-2xl bg-gray-900/60 ring-1 ring-white/10">
+      <h3 class="text-lg font-semibold mb-4">Donatur Terbaru</h3>
+      <ul id="donorList" class="space-y-3"></ul>
+    </section>
+  </main>
+
+  <!-- Modal Donasi -->
+  <div id="donateModal" class="fixed inset-0 hidden items-center justify-center p-4 z-50">
+    <div class="absolute inset-0 bg-black/70" onclick="closeModal()"></div>
+    <div class="relative w-full max-w-lg rounded-2xl bg-gray-900 text-white p-6 ring-1 ring-white/20">
+      <h3 class="text-xl font-semibold mb-4">Isi Form Donasi</h3>
+      <form id="donasiForm" class="space-y-4">
+        <input id="nama" type="text" placeholder="Nama Anda" required
+          class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-emerald-500 outline-none">
+        <input id="nominal" type="number" placeholder="Nominal (Rp)" min="1000" required
+          class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-emerald-500 outline-none">
+        <textarea id="pesan" placeholder="Pesan (Opsional)" rows="2"
+          class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
+
+        <div class="flex justify-end gap-3 pt-4">
+          <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-lg bg-gray-700 hover:bg-gray-600">Batal</button>
+          <button type="submit" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 font-semibold">💚 Simpan Donasi</button>
         </div>
-      </div>
+      </form>
     </div>
-  </section>
+  </div>
 
-  <!-- Panduan -->
-  <section id="panduan" class="max-w-6xl mx-auto px-4 mt-16 mb-24" data-aos="fade-up">
-    <div class="glass shadow-soft rounded-3xl p-6">
-      <h3 class="text-xl font-semibold mb-2">Panduan Deploy (Static Hosting)</h3>
-      <ol class="list-decimal pl-5 space-y-1 text-sm text-slate-600 dark:text-slate-300">
-        <li>Buat project di <b>Firebase Console</b> → buat <b>Firestore Database</b> (mode test sementara).</li>
-        <li>Ambil <b>firebaseConfig</b> (SDK Web) dan tempel di bagian kode ini.</li>
-        <li>Push file <code>index.html</code> ini ke <b>GitHub</b>, lalu aktifkan <b>GitHub Pages</b> / deploy ke <b>Netlify</b> / <b>Vercel</b>.</li>
-        <li>Ubah rules Firestore ke yang aman (lihat komentar di kode).</li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="pb-10">
-    <div class="max-w-6xl mx-auto px-4 text-center text-xs text-slate-500">&copy; <span id="y"></span> Evaluasi KKN. Dibuat dengan ❤️ dan Firebase.</div>
+  <footer class="text-center text-gray-500 text-sm py-10">
+    © <span id="year"></span> Wakaf Platform — Pimpinan Daerah Muhammadiyah Siak
   </footer>
 
-  <!-- AOS -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>AOS.init({ once: true, offset: 12, duration: 600 });</script>
+  <!-- Script util -->
+  <script>
+    function copyToClipboard(elementId) {
+      const text = document.getElementById(elementId).innerText.trim();
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Nomor berhasil disalin: " + text);
+      });
+    }
 
-  <!-- Firebase + App Script -->
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Firebase + Firestore Logic -->
   <script type="module">
-    /* =============================
-     * 1) SETUP FIREBASE
-     * ============================= */
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js'
-    import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js'
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+    import { getFirestore, collection, addDoc, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
-    // TODO: Ganti dengan config punyamu dari Firebase Console → Project settings → Your apps → SDK setup & configuration
     const firebaseConfig = {
     apiKey: "AIzaSyBhlcDzgkQIRnZffXnZXgqjJLiGAtbhLTQ",
     authDomain: "evaluasikkn.firebaseapp.com",
@@ -160,226 +184,117 @@
 
     const app = initializeApp(firebaseConfig)
     const db = getFirestore(app)
-    const messagesRef = collection(db, 'messages') // Collection untuk pesan
+    const messagesRef = collection(db, 'messages')
 
-    /*  Rekomendasi Rules (awal development):
-        allow read, write: if true;   // JANGAN untuk produksi!
+    const GOAL = 50000000;
 
-        Rules produksi (contoh minimal):
-        match /databases/{database}/documents {
-          match /messages/{id} {
-            allow read: if true; // semua boleh lihat
-            allow create: if request.time < timestamp.date(2099,1,1); // sementara
-            allow delete, update: if request.time < timestamp.date(1970,1,1); // blok non-admin
-          }
-        }
-        → Produksi sebaiknya pakai Firebase Auth (email/password atau Google) lalu cek request.auth != null, atau role admin di custom claims.
-    */
+    const modal = document.getElementById("donateModal");
+    const openBtn = document.getElementById("openDonate");
+    const form = document.getElementById("donasiForm");
+    const donorList = document.getElementById("donorList");
+    const totalAmountEl = document.getElementById("totalAmount");
+    const progressPercentEl = document.getElementById("progressPercent");
+    const progressBarEl = document.getElementById("progressBar");
+    const exportBtn = document.getElementById("exportCsv");
 
-    /* =============================
-     * 2) DOM Shortcuts
-     * ============================= */
-    const $ = (s) => document.querySelector(s)
-    const $$ = (s) => document.querySelectorAll(s)
+    const openModal = () => modal.classList.remove("hidden");
+    window.closeModal = () => modal.classList.add("hidden");
+    openBtn?.addEventListener("click", openModal);
 
-    const messagesEl = $('#messages')
-    const formEl = $('#chatForm')
-    const inputEl = $('#messageInput')
-    const nameEl = $('#displayName')
-    const groupEl = $('#groupName')
-    const saveIdentityBtn = $('#saveIdentity')
-    const noteIdentity = $('#identityNote')
-    const msgCount = $('#msgCount')
+    // ====== Simpan donasi ke Firestore ======
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const nama = document.getElementById("nama").value.trim() || "Hamba Allah";
+      const nominal = parseInt(document.getElementById("nominal").value, 10) || 0;
+      const pesan = document.getElementById("pesan").value.trim();
 
-    const adminPanel = $('#adminPanel')
-    const adminInput = $('#adminCode')
-    const adminLogin = $('#adminLogin')
-    const adminLogout = $('#adminLogout')
-    const adminList = $('#adminList')
-    const exportCSV = $('#exportCSV')
-
-    const themeToggle = $('#themeToggle')
-
-    /* =============================
-     * 3) THEME TOGGLE (Dark/Light)
-     * ============================= */
-    const THEME_KEY = 'eval_theme'
-    const setThemeClass = (mode) => {
-      const r = document.documentElement
-      if (mode === 'dark') r.classList.add('dark')
-      else r.classList.remove('dark')
-    }
-    const savedTheme = localStorage.getItem(THEME_KEY) || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-    setThemeClass(savedTheme)
-    themeToggle.addEventListener('click', () => {
-      const now = document.documentElement.classList.contains('dark') ? 'light' : 'dark'
-      localStorage.setItem(THEME_KEY, now)
-      setThemeClass(now)
-    })
-
-    /* =============================
-     * 4) IDENTITY (localStorage)
-     * ============================= */
-    const ID_KEY = 'eval_identity'
-    const getIdentity = () => {
-      try { return JSON.parse(localStorage.getItem(ID_KEY) || '{}') } catch { return {} }
-    }
-    const setIdentity = (obj) => localStorage.setItem(ID_KEY, JSON.stringify(obj))
-
-    // Load identity on start
-    const ident = getIdentity()
-    if (ident.name) nameEl.value = ident.name
-    if (ident.group) groupEl.value = ident.group
-
-    saveIdentityBtn.addEventListener('click', () => {
-      const name = nameEl.value.trim()
-      const group = groupEl.value.trim()
-      setIdentity({ name, group })
-      noteIdentity.classList.remove('hidden')
-      setTimeout(() => noteIdentity.classList.add('hidden'), 1200)
-    })
-
-    /* =============================
-     * 5) SEND MESSAGE
-     * ============================= */
-    formEl.addEventListener('submit', async (e) => {
-      e.preventDefault()
-      const text = inputEl.value.trim()
-      if (!text) return
-
-      const { name = 'Anonim', group = '' } = getIdentity()
-      try {
-        await addDoc(messagesRef, {
-          text, name, group,
-          createdAt: serverTimestamp()
-        })
-        inputEl.value = ''
-        inputEl.focus()
-      } catch (err) {
-        alert('Gagal mengirim: ' + err.message)
+      if (nominal <= 0) {
+        alert("Nominal tidak valid.");
+        return;
       }
-    })
 
-    /* =============================
-     * 6) RENDER MESSAGE BUBBLES
-     * ============================= */
-    const bubble = (m) => {
-      const date = m.createdAt?.toDate ? m.createdAt.toDate() : null
-      const time = date ? date.toLocaleString('id-ID', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: 'short' }) : '⏳'
-      return `
-        <div class="group">
-          <div class="flex items-start gap-3">
-            <div class="h-9 w-9 rounded-full bg-indigo-600/15 grid place-content-center text-indigo-600"><i class="lucide-user"></i></div>
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="font-medium">${m.name || 'Anonim'}</span>
-                ${m.group ? `<span class="text-xs px-2 py-0.5 rounded-full bg-indigo-600/10 text-indigo-700">${m.group}</span>` : ''}
-                <span class="text-[11px] text-slate-500">• ${time}</span>
-              </div>
-              <div class="mt-1 px-4 py-3 rounded-2xl bg-white/80 dark:bg-slate-900/70 border border-slate-200/60 dark:border-slate-700/60 shadow-sm">${escapeHTML(m.text)}</div>
-            </div>
-          </div>
-        </div>`
-    }
+      try {
+        await addDoc(collection(db, "donatur"), {
+          nama,
+          nominal,
+          pesan,
+          ts: Date.now()
+        });
+        alert("Donasi berhasil dicatat. Terima kasih! 🌿");
+        form.reset();
+        closeModal();
+      } catch (err) {
+        console.error(err);
+        alert("Gagal menyimpan donasi. Periksa koneksi atau konfigurasi Firebase.");
+      }
+    });
 
-    const escapeHTML = (str='') => str.replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]))
+    // ====== Ambil realtime data donatur ======
+    let cachedDonors = [];
+    const q = query(collection(db, "donatur"), orderBy("ts", "desc"));
+    onSnapshot(q, (snapshot) => {
+      const arr = [];
+      snapshot.forEach((doc) => arr.push(doc.data()));
+      cachedDonors = arr;
 
-    /* =============================
-     * 7) REALTIME LISTENER (Public Chat)
-     * ============================= */
-    const q = query(messagesRef, orderBy('createdAt', 'desc'))
-    onSnapshot(q, (snap) => {
-      const all = []
-      snap.forEach(doc => all.push({ id: doc.id, ...doc.data() }))
-      msgCount.textContent = `${all.length} pesan`
-      messagesEl.innerHTML = all.reverse().map(bubble).join('')
-      messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' })
-      if (adminMode) renderAdmin(all)
-    })
-
-    /* =============================
-     * 8) ADMIN MODE (simple code)
-     * ============================= */
-    const ADMIN_KEY = 'eval_admin'
-    const ADMIN_CODE = 'kkn-2025' // ganti sesuai kebutuhan (sementara). Untuk produksi gunakan Firebase Auth.
-    let adminMode = localStorage.getItem(ADMIN_KEY) === '1'
-
-    const setAdminUI = (on) => {
-      adminPanel.classList.toggle('hidden', !on)
-    }
-    setAdminUI(adminMode)
-
-    adminLogin.addEventListener('click', () => {
-      if (adminInput.value === ADMIN_CODE) {
-        adminMode = true
-        localStorage.setItem(ADMIN_KEY, '1')
-        setAdminUI(true)
-        adminInput.value = ''
-      } else alert('Kode admin salah')
-    })
-
-    adminLogout.addEventListener('click', () => {
-      adminMode = false
-      localStorage.removeItem(ADMIN_KEY)
-      setAdminUI(false)
-    })
-
-    // Render daftar admin (dengan tombol hapus)
-    function renderAdmin(list) {
-      adminList.innerHTML = list.map(m => {
-        const date = m.createdAt?.toDate ? m.createdAt.toDate() : null
-        const time = date ? date.toLocaleString('id-ID') : '⏳'
+      donorList.innerHTML = arr.slice(0, 50).map((d) => {
+        const rupiah = (d.nominal||0).toLocaleString('id-ID');
+        const waktu = d.ts ? new Date(d.ts + (7*60*60*1000)) : null;
+        const waktuStr = waktu ? waktu.toLocaleString('id-ID', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' }) + ' WIB' : '';
         return `
-          <div class="py-3 flex items-start gap-3">
-            <div class="flex-1">
-              <div class="text-sm"><span class="font-medium">${escapeHTML(m.name || 'Anonim')}</span> ${m.group ? `<span class='text-xs text-slate-500'>( ${escapeHTML(m.group)} )</span>` : ''}</div>
-              <div class="text-xs text-slate-500">${time}</div>
-              <div class="mt-1 text-sm">${escapeHTML(m.text || '')}</div>
+          <li class="flex items-start justify-between gap-4 p-3 rounded-xl bg-black/30 ring-1 ring-white/10">
+            <div>
+              <p class="font-medium">${escapeHtml(d.nama || 'Hamba Allah')}</p>
+              ${d.pesan ? `<p class="text-sm text-gray-400">"${escapeHtml(d.pesan)}"</p>` : ''}
             </div>
-            <button data-id="${m.id}" class="del px-3 py-1.5 rounded-lg bg-rose-600 text-white text-xs hover:bg-rose-700 active:scale-95">Hapus</button>
-          </div>`
-      }).join('')
+            <div class="text-right">
+              <p class="font-semibold">Rp ${rupiah}</p>
+              ${waktuStr ? `<p class="text-xs text-gray-500">${waktuStr}</p>` : ''}
+            </div>
+          </li>
+        `;
+      }).join("");
 
-      adminList.querySelectorAll('.del').forEach(btn => {
-        btn.addEventListener('click', async (e) => {
-          const id = e.currentTarget.getAttribute('data-id')
-          if (!confirm('Hapus pesan ini?')) return
-          try {
-            await deleteDoc(doc(db, 'messages', id))
-          } catch (err) { alert('Gagal hapus: ' + err.message) }
-        })
-      })
+      const total = arr.reduce((s, x) => s + (parseInt(x.nominal,10)||0), 0);
+      totalAmountEl.textContent = 'Rp ' + total.toLocaleString('id-ID');
+      const percent = GOAL > 0 ? Math.min(100, Math.round((total/GOAL)*100)) : 0;
+      progressPercentEl.textContent = percent;
+      progressBarEl.style.width = percent + '%';
+    });
+
+    // ====== Export CSV ======
+    exportBtn.addEventListener("click", () => {
+      if (!cachedDonors.length) {
+        alert("Belum ada data donatur.");
+        return;
+      }
+      const header = ["No","Nama","Nominal","Pesan","Waktu (WIB)"];
+      const rows = cachedDonors.map((d,i) => {
+        const waktu = d.ts ? new Date(d.ts + (7*60*60*1000)).toISOString().replace('T',' ').slice(0,16) : '';
+        return [ i+1, (d.nama||''), d.nominal||0, (d.pesan||''), waktu ];
+      });
+      const csv = [header].concat(rows).map(r => r.map(csvEscape).join(",")).join("\n");
+      const blob = new Blob(["\uFEFF"+csv], {type:"text/csv;charset=utf-8;"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "donations.csv";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+
+    // Utils
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, (m) => ({
+        '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#039;'
+      }[m]));
     }
-
-    /* =============================
-     * 9) EXPORT CSV
-     * ============================= */
-    exportCSV.addEventListener('click', async () => {
-      // Ambil snapshot terkini dari UI adminList (sudah ada listener realtime)
-      const rows = [['Nama','Kelompok','Waktu','Pesan']]
-      adminList.querySelectorAll('div.py-3').forEach(item => {
-        const name = item.querySelector('.font-medium')?.textContent?.trim() || ''
-        const group = (item.querySelector('.text-xs.text-slate-500')?.textContent || '').replace(/[()]/g,'').trim()
-        const time = item.querySelector('div.text-xs.text-slate-500')?.textContent?.trim() || ''
-        const msg = item.querySelector('div.mt-1')?.textContent?.trim() || ''
-        rows.push([name, group, time, msg])
-      })
-      const csv = rows.map(r => r.map(v => '"' + String(v).replace(/"/g,'""') + '"').join(',')).join('\n')
-      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = 'evaluasi-kkn-chat.csv'
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
-      URL.revokeObjectURL(url)
-    })
-
-    /* =============================
-     * 10) MISC
-     * ============================= */
-    document.getElementById('y').textContent = new Date().getFullYear()
+    function csvEscape(v){
+      const s = String(v ?? "");
+      return /[",\n]/.test(s) ? `"${s.replace(/"/g,'""')}"` : s;
+    }
   </script>
 </body>
 </html>
